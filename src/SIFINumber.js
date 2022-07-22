@@ -582,3 +582,29 @@ const highmath = (expression) => {
 // }
 
 // searchrepeat(q)
+
+const n1 = '11123.330'
+const n2 = '9999.99'
+
+const math_max = (n1: number, n2: number): number => n1 > n2 ? n1 : n2
+
+const sum = (n1: string, n2: string): string => {
+  let i = '', f = '', c: any = 0
+  const [i1, f1 = ''] = n1.split('.'), [i2, f2 = ''] = n2.split('.')
+  const i1a = i1.split(''), i2a = i2.split('')
+
+  for (let s: number, i = math_max(f1.length, f2.length); i-- > 0;) {
+    c = (s = ~~f1[i] + ~~f2[i] + c) > 9 ? (s -= 10, 1) : 0; f = s + f
+  }
+
+  for (;i1a.length || i2a.length || c;) {
+    i = (c += ~~i1a.pop() + ~~i2a.pop()) % 10 + i; c = c > 9
+  }
+
+  if (f) i += '.' + f
+  console.log([+n1 + +n2])
+  console.log([n1, n2, i])
+  return i
+}
+
+sum(n1, n2)
